@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tá em Casa</title>
+    <link rel="shortcut icon" href="{% static 'img/reduced_logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script src="{% static 'script/indexModals.js' %}" defer></script>
+</head>
+
+
+
+<body>
+    
+    <form action="{% url 'app' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <header>
+            <a class="sair" href="{% url 'home' %}"> Sair</a>
+            <h1>Bem vindo ao Tá em Casa!</h1>
+            <hr>
+            <h2>O Brasil mais perto de você!</h2>
+        </header>
+        
+        <fieldset>
+            <legend>1. Estética</legend>
+            <label><input type="checkbox" name="tipo" value="Unhas"> Unhas (Manicure/Pedicure)</label><br>
+            <label><input type="checkbox" name="tipo" value="Corte de Cabelo"> Corte de Cabelo</label><br>
+            <label><input type="checkbox" name="tipo" value="Barbeiro"> Barbeiro</label><br>
+            <label><input type="checkbox" name="tipo" value="Pintura de Cabelo"> Pintura de Cabelo</label><br>
+            <label><input type="checkbox" name="tipo" value="Sobrancelha / Design Facial"> Sobrancelha / Design Facial</label><br>
+            <label><input type="checkbox" name="tipo" value="Maquiagem Profissional"> Maquiagem Profissional</label><br>
+            <label><input type="checkbox" name="tipo" value="Bronzeamento"> Bronzeamento</label><br>
+            <label><input type="checkbox" name="tipo" value="Lash Design"> Lash Design</label><br>
+            <label><input type="checkbox" name="tipo" value="Depilação e Estética Íntima"> Depilação e Estética Íntima</label><br>
+            <label><input type="checkbox" name="tipo" value="Depilação Brasileira"> Depilação Brasileira (Brazilian Waxing)</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>2. Comidas</legend>
+            <label><input type="checkbox" name="tipo" value="Restaurantes"> Restaurantes</label><br>
+            <label><input type="checkbox" name="tipo" value="Japonês"> Japonês</label><br>
+            <label><input type="checkbox" name="tipo" value="Churrascaria"> Churrascaria</label><br>
+            <label><input type="checkbox" name="tipo" value="Comida Caseira"> Comida Caseira</label><br>
+            <label><input type="checkbox" name="tipo" value="Padaria / Mercearia"> Padaria / Mercearia</label><br>
+            <label><input type="checkbox" name="tipo" value="Padaria Brasileira"> Padaria Brasileira</label><br>
+            <label><input type="checkbox" name="tipo" value="Mercado Brasileiro"> Mercado Brasileiro</label><br>
+            <label><input type="checkbox" name="tipo" value="Encomendas"> Encomendas</label><br>
+            <label><input type="checkbox" name="tipo" value="Buffet Completo"> Buffet Completo</label><br>
+            <label><input type="checkbox" name="tipo" value="Doces de Festa"> Doces de Festa</label><br>
+            <label><input type="checkbox" name="tipo" value="Salgados de Festa"> Salgados de Festa</label><br>
+            <label><input type="checkbox" name="tipo" value="Bolos Personalizados"> Bolos Personalizados</label><br>
+            <label><input type="checkbox" name="tipo" value="Marmitas"> Marmitas</label><br>
+            <label><input type="checkbox" name="tipo" value="Açaí"> Açaí</label><br>
+            <label><input type="checkbox" name="tipo" value="Açaí Delivery"> Açaí Delivery</label><br>
+            <label><input type="checkbox" name="tipo" value="Loja de Açaí"> Loja de Açaí</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>3. Autos</legend>
+            <label><input type="checkbox" name="tipo" value="Mecânica Geral"> Mecânica Geral</label><br>
+            <label><input type="checkbox" name="tipo" value="Funilaria e Pintura"> Funilaria e Pintura</label><br>
+            <label><input type="checkbox" name="tipo" value="Autoelétrica"> Autoelétrica</label><br>
+            <label><input type="checkbox" name="tipo" value="Dealer Brasileiro"> Dealer Brasileiro</label><br>
+            <label><input type="checkbox" name="tipo" value="Aluguel de Carros"> Aluguel de Carros</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>4. Serviços Domésticos</legend>
+            <label><input type="checkbox" name="tipo" value="Limpeza de Casa"> Limpeza de Casa</label><br>
+            <label><input type="checkbox" name="tipo" value="Limpeza de Piscina"> Limpeza de Piscina</label><br>
+            <label><input type="checkbox" name="tipo" value="Faxina Pós-obra"> Faxina Pós-obra</label><br>
+            <label><input type="checkbox" name="tipo" value="Lavanderia Delivery"> Lavanderia Delivery</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>5. Saúde</legend>
+            <label><input type="checkbox" name="tipo" value="Dentista"> Dentista</label><br>
+            <label><input type="checkbox" name="tipo" value="Médico"> Médico</label><br>
+            <label><input type="checkbox" name="tipo" value="Psicólogo"> Psicólogo</label><br>
+            <label><input type="checkbox" name="tipo" value="Fisioterapeuta"> Fisioterapeuta</label><br>
+            <label><input type="checkbox" name="tipo" value="Personal Trainer"> Personal Trainer</label><br>
+            <label><input type="checkbox" name="tipo" value="Nutricionista"> Nutricionista</label><br>
+            <label><input type="checkbox" name="tipo" value="Seguro de Saúde"> Seguro de Saúde</label><br>
+            <label><input type="checkbox" name="tipo" value="Seguro de Vida"> Seguro de Vida</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>6. Pets</legend>
+            <label><input type="checkbox" name="tipo" value="Banho e Tosa"> Banho e tosa</label><br>
+            <label><input type="checkbox" name="tipo" value="Pet Sitter"> Pet Sitter</label><br>
+            <label><input type="checkbox" name="tipo" value="Passeador"> Passeador</label><br>
+            <label><input type="checkbox" name="tipo" value="Clínica Veterinária"> Clínica Veterinária</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>7. Financeiro</legend>
+            <label><input type="checkbox" name="tipo" value="Contador"> Contador</label><br>
+            <label><input type="checkbox" name="tipo" value="Consultor Financeiro"> Consultor Financeiro</label><br>
+            <label><input type="checkbox" name="tipo" value="Imposto de Renda"> Imposto de Renda (USA/Brasil)</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>8. Eventos</legend>
+            <label><input type="checkbox" name="tipo" value="Organização de Eventos"> Organização de Eventos</label><br>
+            <label><input type="checkbox" name="tipo" value="Local para Eventos"> Local para Eventos</label><br>
+            <label><input type="checkbox" name="tipo" value="Equipamentos para Festa"> Equipamentos para Festa</label><br>
+            <label><input type="checkbox" name="tipo" value="Brindes Personalizados"> Brindes Personalizados</label><br>
+            <label><input type="checkbox" name="tipo" value="Convites"> Convites</label><br>
+            <label><input type="checkbox" name="tipo" value="Decoração"> Decoração</label><br>
+            <label><input type="checkbox" name="tipo" value="Edição de Vídeos"> Edição de Vídeos</label><br>
+            <label><input type="checkbox" name="tipo" value="Fotografia"> Fotografia</label><br>
+            <label><input type="checkbox" name="tipo" value="Florista"> Florista</label><br>
+            <label><input type="checkbox" name="tipo" value="Animação de Festa"> Animação de Festa</label><br>
+            <label><input type="checkbox" name="tipo" value="Banda"> Banda (Sertanejo, Pagode, MPB)</label><br>
+            <label><input type="checkbox" name="tipo" value="DJ"> DJ</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>9. Construção / Reforma</legend>
+            <label><input type="checkbox" name="tipo" value="Piso"> Piso</label><br>
+            <label><input type="checkbox" name="tipo" value="Alvenaria"> Alvenaria</label><br>
+            <label><input type="checkbox" name="tipo" value="Pintura"> Pintura</label><br>
+            <label><input type="checkbox" name="tipo" value="Drywall"> Drywall</label><br>
+            <label><input type="checkbox" name="tipo" value="Gesso"> Gesso</label><br>
+            <label><input type="checkbox" name="tipo" value="Carpintaria"> Carpintaria</label><br>
+            <label><input type="checkbox" name="tipo" value="Instalações Elétricas / Hidráulicas"> Instalações Elétricas / Hidráulicas</label><br>
+            <label><input type="checkbox" name="tipo" value="Reformas Gerais"> Reformas Gerais</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>10. Esportes</legend>
+            <label><input type="checkbox" name="tipo" value="Futevôlei"> Futevôlei</label><br>
+            <label><input type="checkbox" name="tipo" value="Beach Tennis"> Beach Tennis</label><br>
+            <label><input type="checkbox" name="tipo" value="Treinador Esportivo"> Treinador Esportivo</label><br>
+            <label><input type="checkbox" name="tipo" value="Personal em Grupo"> Personal em Grupo</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>11. Turismo</legend>
+            <label><input type="checkbox" name="tipo" value="Chip de Celular"> Chip de Celular</label><br>
+            <label><input type="checkbox" name="tipo" value="Aluguel de Carro para Turistas"> Aluguel de Carro para Turistas</label><br>
+            <label><input type="checkbox" name="tipo" value="Guia Turístico"> Guia Turístico</label><br>
+            <label><input type="checkbox" name="tipo" value="Ingressos / Atrações"> Ingressos / Atrações</label><br>
+            <label><input type="checkbox" name="tipo" value="Transfer de Aeroporto"> Transfer de Aeroporto</label><br>
+            <label><input type="checkbox" name="tipo" value="Roteiro Turístico Personalizado"> Roteiro Turístico Personalizado</label><br>
+            <label><input type="checkbox" name="tipo" value="Apoio em Imigração"> Apoio em Imigração (Para Turistas)</label><br>
+            <label><input type="checkbox" name="tipo" value="Assistência com Tradução e Transporte"> Assistência com Tradução e Transporte</label>
+          </fieldset>
+        
+          <fieldset>
+            <legend>12. Outros</legend>
+            <label><input type="checkbox" name="tipo" value="Outros"> Outros</label>
+          </fieldset>
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <div id="map"></div>
+
+    <div id="loginModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+
+            <form action="{% url 'login_validate' %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <label for="nome">Nome</label>
+                      <input type="text" id="nome" name="nome" placeholder="Seu nome">
+                      <br/>
+                  <label for="email">E-mail</label>
+                      <input type="email" id="email" name="email" placeholder="Seu email">
+                      <br/>
+                  <label for="telefone">Telefone (opcional)</label>
+                      <input type="text" id="telefone" name="telefone" placeholder="Seu telefone">
+                      <br/>
+              <input type="submit" value="Enviar">
+            </form> 
+
+          </div>
+    </div>
+            
+    <script>
+    const map = L.map('map').setView([39.8283, -98.5795], 4);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const tiposSelecionados = "{{ tipos|escapejs }}";
+
+    fetch('../api/negocios/')
+        .then(res => res.json())
+        .then(enderecos => {
+            enderecos.forEach(loc => {
+                if (tiposSelecionados.length < 3 || tiposSelecionados.includes(loc.tipo)) {
+                    const popup = `
+                        <div class="popup-negocio">
+                            <h3>${loc.nome}</h3>
+                            <p>${loc.tipo}</p>
+                            <p><strong>&#128205;</strong> ${loc.cidade}, ${loc.rua}, ${loc.numero}</p>
+                            <p><strong>&#9993;</strong> ${loc.email}</p>
+                            <p><strong>&#128222;</strong> <a href="https://wa.me/${loc.telefone_wpp}" target="_blank">${loc.telefone_wpp}</a></p>
+                            <p><strong>&#127760;</strong> <a href="${loc.instagram_or_website}" target="_blank">${loc.instagram_or_website}</a></p>
+                            <p>${loc.descricao}</p>
+                            <button onclick="openModal('loginModal')" class="saiba-mais-btn">Saiba mais</button>
+                        </div>
+                    `;
+
+                    L.marker([loc.latitude, loc.longitude])
+                        .addTo(map)
+                        .bindPopup(popup);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

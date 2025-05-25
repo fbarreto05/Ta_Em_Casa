@@ -14,3 +14,4 @@ class Negocio(models.Model):
     como_conheceu = models.TextField(null=True)
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
+    permitido = models.BooleanField(default=False)

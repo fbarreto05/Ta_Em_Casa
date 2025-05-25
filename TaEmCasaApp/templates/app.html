@@ -24,140 +24,150 @@
         {% csrf_token %}
         <header>
             <a class="sair" href="{% url 'home' %}"> Sair</a>
-            <h1>Bem vindo ao Tá em Casa!</h1>
+            <h1>Bem vindo ao <br> Tá em Casa!</h1>
             <hr>
             <h2>O Brasil mais perto de você!</h2>
         </header>
         
+        <label for="raio">Raio da busca</label>
+        <select id="raio" name="raio">
+          <option value="5000" {% if raio == '5000' %}selected{% endif %}>Até 5km</option>
+          <option value="10000" {% if raio == '10000' %}selected{% endif %}>Até 10km</option>
+          <option value="20000" {% if raio == '20000' %}selected{% endif %}>Até 20km</option>
+          <option value="50000" {% if raio == '50000' %}selected{% endif %}>Até 50km</option>
+          <option value="13000000" {% if raio == '13000000' %}selected{% endif %}>Todos</option>
+        </select>
+        
+        <label for="tipo">Tipos</label>
         <fieldset>
             <legend>1. Estética</legend>
-            <label><input type="checkbox" name="tipo" value="Unhas"> Unhas (Manicure/Pedicure)</label><br>
-            <label><input type="checkbox" name="tipo" value="Corte de Cabelo"> Corte de Cabelo</label><br>
-            <label><input type="checkbox" name="tipo" value="Barbeiro"> Barbeiro</label><br>
-            <label><input type="checkbox" name="tipo" value="Pintura de Cabelo"> Pintura de Cabelo</label><br>
-            <label><input type="checkbox" name="tipo" value="Sobrancelha / Design Facial"> Sobrancelha / Design Facial</label><br>
-            <label><input type="checkbox" name="tipo" value="Maquiagem Profissional"> Maquiagem Profissional</label><br>
-            <label><input type="checkbox" name="tipo" value="Bronzeamento"> Bronzeamento</label><br>
-            <label><input type="checkbox" name="tipo" value="Lash Design"> Lash Design</label><br>
-            <label><input type="checkbox" name="tipo" value="Depilação e Estética Íntima"> Depilação e Estética Íntima</label><br>
-            <label><input type="checkbox" name="tipo" value="Depilação Brasileira"> Depilação Brasileira (Brazilian Waxing)</label>
+            <label><input type="checkbox" name="tipo" value="Unhas" {% if "Unhas" in tipos %}checked{% endif %}> Unhas (Manicure/Pedicure)</label><br>
+            <label><input type="checkbox" name="tipo" value="Corte de Cabelo" {% if "Corte de Cabelo" in tipos %}checked{% endif %}> Corte de Cabelo</label><br>
+            <label><input type="checkbox" name="tipo" value="Barbeiro" {% if "Barbeiro" in tipos %}checked{% endif %}> Barbeiro</label><br>
+            <label><input type="checkbox" name="tipo" value="Pintura de Cabelo" {% if "Pintura de Cabelo" in tipos %}checked{% endif %}> Pintura de Cabelo</label><br>
+            <label><input type="checkbox" name="tipo" value="Sobrancelha / Design Facial" {% if "Sobrancelha / Design Facial" in tipos %}checked{% endif %}> Sobrancelha / Design Facial</label><br>
+            <label><input type="checkbox" name="tipo" value="Maquiagem Profissional" {% if "Maquiagem Profissional" in tipos %}checked{% endif %}> Maquiagem Profissional</label><br>
+            <label><input type="checkbox" name="tipo" value="Bronzeamento" {% if "Bronzeamento" in tipos %}checked{% endif %}> Bronzeamento</label><br>
+            <label><input type="checkbox" name="tipo" value="Lash Design" {% if "Lash Design" in tipos %}checked{% endif %}> Lash Design</label><br>
+            <label><input type="checkbox" name="tipo" value="Depilação e Estética Íntima" {% if "Depilação e Estética Íntima" in tipos %}checked{% endif %}> Depilação e Estética Íntima</label><br>
+            <label><input type="checkbox" name="tipo" value="Depilação Brasileira" {% if "Depilação Brasileira" in tipos %}checked{% endif %}> Depilação Brasileira (Brazilian Waxing)</label>
           </fieldset>
         
           <fieldset>
             <legend>2. Comidas</legend>
-            <label><input type="checkbox" name="tipo" value="Restaurantes"> Restaurantes</label><br>
-            <label><input type="checkbox" name="tipo" value="Japonês"> Japonês</label><br>
-            <label><input type="checkbox" name="tipo" value="Churrascaria"> Churrascaria</label><br>
-            <label><input type="checkbox" name="tipo" value="Comida Caseira"> Comida Caseira</label><br>
-            <label><input type="checkbox" name="tipo" value="Padaria / Mercearia"> Padaria / Mercearia</label><br>
-            <label><input type="checkbox" name="tipo" value="Padaria Brasileira"> Padaria Brasileira</label><br>
-            <label><input type="checkbox" name="tipo" value="Mercado Brasileiro"> Mercado Brasileiro</label><br>
-            <label><input type="checkbox" name="tipo" value="Encomendas"> Encomendas</label><br>
-            <label><input type="checkbox" name="tipo" value="Buffet Completo"> Buffet Completo</label><br>
-            <label><input type="checkbox" name="tipo" value="Doces de Festa"> Doces de Festa</label><br>
-            <label><input type="checkbox" name="tipo" value="Salgados de Festa"> Salgados de Festa</label><br>
-            <label><input type="checkbox" name="tipo" value="Bolos Personalizados"> Bolos Personalizados</label><br>
-            <label><input type="checkbox" name="tipo" value="Marmitas"> Marmitas</label><br>
-            <label><input type="checkbox" name="tipo" value="Açaí"> Açaí</label><br>
-            <label><input type="checkbox" name="tipo" value="Açaí Delivery"> Açaí Delivery</label><br>
-            <label><input type="checkbox" name="tipo" value="Loja de Açaí"> Loja de Açaí</label>
+            <label><input type="checkbox" name="tipo" value="Restaurantes" {% if "Restaurantes" in tipos %}checked{% endif %}> Restaurantes</label><br>
+            <label><input type="checkbox" name="tipo" value="Japonês" {% if "Japonês" in tipos %}checked{% endif %}> Japonês</label><br>
+            <label><input type="checkbox" name="tipo" value="Churrascaria" {% if "Churrascaria" in tipos %}checked{% endif %}> Churrascaria</label><br>
+            <label><input type="checkbox" name="tipo" value="Comida Caseira" {% if "Comida Caseira" in tipos %}checked{% endif %}> Comida Caseira</label><br>
+            <label><input type="checkbox" name="tipo" value="Padaria / Mercearia" {% if "Padaria / Mercearia" in tipos %}checked{% endif %}> Padaria / Mercearia</label><br>
+            <label><input type="checkbox" name="tipo" value="Padaria Brasileira" {% if "Padaria Brasileira" in tipos %}checked{% endif %}> Padaria Brasileira</label><br>
+            <label><input type="checkbox" name="tipo" value="Mercado Brasileiro" {% if "Mercado Brasileiro" in tipos %}checked{% endif %}> Mercado Brasileiro</label><br>
+            <label><input type="checkbox" name="tipo" value="Encomendas" {% if "Encomendas" in tipos %}checked{% endif %}> Encomendas</label><br>
+            <label><input type="checkbox" name="tipo" value="Buffet Completo" {% if "Buffet Completo" in tipos %}checked{% endif %}> Buffet Completo</label><br>
+            <label><input type="checkbox" name="tipo" value="Doces de Festa" {% if "Doces de Festa" in tipos %}checked{% endif %}> Doces de Festa</label><br>
+            <label><input type="checkbox" name="tipo" value="Salgados de Festa" {% if "Salgados de Festa" in tipos %}checked{% endif %}> Salgados de Festa</label><br>
+            <label><input type="checkbox" name="tipo" value="Bolos Personalizados" {% if "Bolos Personalizados" in tipos %}checked{% endif %}> Bolos Personalizados</label><br>
+            <label><input type="checkbox" name="tipo" value="Marmitas" {% if "Marmitas" in tipos %}checked{% endif %}> Marmitas</label><br>
+            <label><input type="checkbox" name="tipo" value="Açaí" {% if "Açaí" in tipos %}checked{% endif %}> Açaí</label><br>
+            <label><input type="checkbox" name="tipo" value="Açaí Delivery" {% if "Açaí Delivery" in tipos %}checked{% endif %}> Açaí Delivery</label><br>
+            <label><input type="checkbox" name="tipo" value="Loja de Açaí" {% if "Loja de Açaí" in tipos %}checked{% endif %}> Loja de Açaí</label>
           </fieldset>
         
           <fieldset>
             <legend>3. Autos</legend>
-            <label><input type="checkbox" name="tipo" value="Mecânica Geral"> Mecânica Geral</label><br>
-            <label><input type="checkbox" name="tipo" value="Funilaria e Pintura"> Funilaria e Pintura</label><br>
-            <label><input type="checkbox" name="tipo" value="Autoelétrica"> Autoelétrica</label><br>
-            <label><input type="checkbox" name="tipo" value="Dealer Brasileiro"> Dealer Brasileiro</label><br>
-            <label><input type="checkbox" name="tipo" value="Aluguel de Carros"> Aluguel de Carros</label>
+            <label><input type="checkbox" name="tipo" value="Mecânica Geral" {% if "Mecânica Geral" in tipos %}checked{% endif %}> Mecânica Geral</label><br>
+            <label><input type="checkbox" name="tipo" value="Funilaria e Pintura" {% if "Funilaria e Pintura" in tipos %}checked{% endif %}> Funilaria e Pintura</label><br>
+            <label><input type="checkbox" name="tipo" value="Autoelétrica" {% if "Autoelétrica" in tipos %}checked{% endif %}> Autoelétrica</label><br>
+            <label><input type="checkbox" name="tipo" value="Dealer Brasileiro" {% if "Dealer Brasileiro" in tipos %}checked{% endif %}> Dealer Brasileiro</label><br>
+            <label><input type="checkbox" name="tipo" value="Aluguel de Carros" {% if "Aluguel de Carros" in tipos %}checked{% endif %}> Aluguel de Carros</label>
           </fieldset>
         
           <fieldset>
             <legend>4. Serviços Domésticos</legend>
-            <label><input type="checkbox" name="tipo" value="Limpeza de Casa"> Limpeza de Casa</label><br>
-            <label><input type="checkbox" name="tipo" value="Limpeza de Piscina"> Limpeza de Piscina</label><br>
-            <label><input type="checkbox" name="tipo" value="Faxina Pós-obra"> Faxina Pós-obra</label><br>
-            <label><input type="checkbox" name="tipo" value="Lavanderia Delivery"> Lavanderia Delivery</label>
+            <label><input type="checkbox" name="tipo" value="Limpeza de Casa" {% if "Limpeza de Casa" in tipos %}checked{% endif %}> Limpeza de Casa</label><br>
+            <label><input type="checkbox" name="tipo" value="Limpeza de Piscina" {% if "Limpeza de Piscina" in tipos %}checked{% endif %}> Limpeza de Piscina</label><br>
+            <label><input type="checkbox" name="tipo" value="Faxina Pós-obra" {% if "Faxina Pós-obra" in tipos %}checked{% endif %}> Faxina Pós-obra</label><br>
+            <label><input type="checkbox" name="tipo" value="Lavanderia Delivery" {% if "Lavanderia Delivery" in tipos %}checked{% endif %}> Lavanderia Delivery</label>
           </fieldset>
         
           <fieldset>
             <legend>5. Saúde</legend>
-            <label><input type="checkbox" name="tipo" value="Dentista"> Dentista</label><br>
-            <label><input type="checkbox" name="tipo" value="Médico"> Médico</label><br>
-            <label><input type="checkbox" name="tipo" value="Psicólogo"> Psicólogo</label><br>
-            <label><input type="checkbox" name="tipo" value="Fisioterapeuta"> Fisioterapeuta</label><br>
-            <label><input type="checkbox" name="tipo" value="Personal Trainer"> Personal Trainer</label><br>
-            <label><input type="checkbox" name="tipo" value="Nutricionista"> Nutricionista</label><br>
-            <label><input type="checkbox" name="tipo" value="Seguro de Saúde"> Seguro de Saúde</label><br>
-            <label><input type="checkbox" name="tipo" value="Seguro de Vida"> Seguro de Vida</label>
+            <label><input type="checkbox" name="tipo" value="Dentista" {% if "Dentista" in tipos %}checked{% endif %}> Dentista</label><br>
+            <label><input type="checkbox" name="tipo" value="Médico" {% if "Médico" in tipos %}checked{% endif %}> Médico</label><br>
+            <label><input type="checkbox" name="tipo" value="Psicólogo" {% if "Psicólogo" in tipos %}checked{% endif %}> Psicólogo</label><br>
+            <label><input type="checkbox" name="tipo" value="Fisioterapeuta" {% if "Fisioterapeuta" in tipos %}checked{% endif %}> Fisioterapeuta</label><br>
+            <label><input type="checkbox" name="tipo" value="Personal Trainer" {% if "Personal Trainer" in tipos %}checked{% endif %}> Personal Trainer</label><br>
+            <label><input type="checkbox" name="tipo" value="Nutricionista" {% if "Nutricionista" in tipos %}checked{% endif %}> Nutricionista</label><br>
+            <label><input type="checkbox" name="tipo" value="Seguro de Saúde" {% if "Seguro de Saúde" in tipos %}checked{% endif %}> Seguro de Saúde</label><br>
+            <label><input type="checkbox" name="tipo" value="Seguro de Vida" {% if "Seguro de Vida" in tipos %}checked{% endif %}> Seguro de Vida</label>
           </fieldset>
         
           <fieldset>
             <legend>6. Pets</legend>
-            <label><input type="checkbox" name="tipo" value="Banho e Tosa"> Banho e tosa</label><br>
-            <label><input type="checkbox" name="tipo" value="Pet Sitter"> Pet Sitter</label><br>
-            <label><input type="checkbox" name="tipo" value="Passeador"> Passeador</label><br>
-            <label><input type="checkbox" name="tipo" value="Clínica Veterinária"> Clínica Veterinária</label>
+            <label><input type="checkbox" name="tipo" value="Banho e Tosa" {% if "Banho e Tosa" in tipos %}checked{% endif %}> Banho e tosa</label><br>
+            <label><input type="checkbox" name="tipo" value="Pet Sitter" {% if "Pet Sitter" in tipos %}checked{% endif %}> Pet Sitter</label><br>
+            <label><input type="checkbox" name="tipo" value="Passeador" {% if "Passeador" in tipos %}checked{% endif %}> Passeador</label><br>
+            <label><input type="checkbox" name="tipo" value="Clínica Veterinária" {% if "Clínica Veterinária" in tipos %}checked{% endif %}> Clínica Veterinária</label>
           </fieldset>
         
           <fieldset>
             <legend>7. Financeiro</legend>
-            <label><input type="checkbox" name="tipo" value="Contador"> Contador</label><br>
-            <label><input type="checkbox" name="tipo" value="Consultor Financeiro"> Consultor Financeiro</label><br>
-            <label><input type="checkbox" name="tipo" value="Imposto de Renda"> Imposto de Renda (USA/Brasil)</label>
+            <label><input type="checkbox" name="tipo" value="Contador" {% if "Contador" in tipos %}checked{% endif %}> Contador</label><br>
+            <label><input type="checkbox" name="tipo" value="Consultor Financeiro" {% if "Consultor Financeiro" in tipos %}checked{% endif %}> Consultor Financeiro</label><br>
+            <label><input type="checkbox" name="tipo" value="Imposto de Renda" {% if "Imposto de Renda" in tipos %}checked{% endif %}> Imposto de Renda (USA/Brasil)</label>
           </fieldset>
         
           <fieldset>
             <legend>8. Eventos</legend>
-            <label><input type="checkbox" name="tipo" value="Organização de Eventos"> Organização de Eventos</label><br>
-            <label><input type="checkbox" name="tipo" value="Local para Eventos"> Local para Eventos</label><br>
-            <label><input type="checkbox" name="tipo" value="Equipamentos para Festa"> Equipamentos para Festa</label><br>
-            <label><input type="checkbox" name="tipo" value="Brindes Personalizados"> Brindes Personalizados</label><br>
-            <label><input type="checkbox" name="tipo" value="Convites"> Convites</label><br>
-            <label><input type="checkbox" name="tipo" value="Decoração"> Decoração</label><br>
-            <label><input type="checkbox" name="tipo" value="Edição de Vídeos"> Edição de Vídeos</label><br>
-            <label><input type="checkbox" name="tipo" value="Fotografia"> Fotografia</label><br>
-            <label><input type="checkbox" name="tipo" value="Florista"> Florista</label><br>
-            <label><input type="checkbox" name="tipo" value="Animação de Festa"> Animação de Festa</label><br>
-            <label><input type="checkbox" name="tipo" value="Banda"> Banda (Sertanejo, Pagode, MPB)</label><br>
-            <label><input type="checkbox" name="tipo" value="DJ"> DJ</label>
+            <label><input type="checkbox" name="tipo" value="Organização de Eventos" {% if "Organização de Eventos" in tipos %}checked{% endif %}> Organização de Eventos</label><br>
+            <label><input type="checkbox" name="tipo" value="Local para Eventos" {% if "Local para Eventos" in tipos %}checked{% endif %}> Local para Eventos</label><br>
+            <label><input type="checkbox" name="tipo" value="Equipamentos para Festa" {% if "Equipamentos para Festa" in tipos %}checked{% endif %}> Equipamentos para Festa</label><br>
+            <label><input type="checkbox" name="tipo" value="Brindes Personalizados" {% if "Brindes Personalizados" in tipos %}checked{% endif %}> Brindes Personalizados</label><br>
+            <label><input type="checkbox" name="tipo" value="Convites" {% if "Convites" in tipos %}checked{% endif %}> Convites</label><br>
+            <label><input type="checkbox" name="tipo" value="Decoração" {% if "Decoração" in tipos %}checked{% endif %}> Decoração</label><br>
+            <label><input type="checkbox" name="tipo" value="Edição de Vídeos" {% if "Edição de Vídeos" in tipos %}checked{% endif %}> Edição de Vídeos</label><br>
+            <label><input type="checkbox" name="tipo" value="Fotografia" {% if "Fotografia" in tipos %}checked{% endif %}> Fotografia</label><br>
+            <label><input type="checkbox" name="tipo" value="Florista" {% if "Florista" in tipos %}checked{% endif %}> Florista</label><br>
+            <label><input type="checkbox" name="tipo" value="Animação de Festa" {% if "Animação de Festa" in tipos %}checked{% endif %}> Animação de Festa</label><br>
+            <label><input type="checkbox" name="tipo" value="Banda" {% if "Banda" in tipos %}checked{% endif %}> Banda (Sertanejo, Pagode, MPB)</label><br>
+            <label><input type="checkbox" name="tipo" value="DJ" {% if "DJ" in tipos %}checked{% endif %}> DJ</label>
           </fieldset>
         
           <fieldset>
             <legend>9. Construção / Reforma</legend>
-            <label><input type="checkbox" name="tipo" value="Piso"> Piso</label><br>
-            <label><input type="checkbox" name="tipo" value="Alvenaria"> Alvenaria</label><br>
-            <label><input type="checkbox" name="tipo" value="Pintura"> Pintura</label><br>
-            <label><input type="checkbox" name="tipo" value="Drywall"> Drywall</label><br>
-            <label><input type="checkbox" name="tipo" value="Gesso"> Gesso</label><br>
-            <label><input type="checkbox" name="tipo" value="Carpintaria"> Carpintaria</label><br>
-            <label><input type="checkbox" name="tipo" value="Instalações Elétricas / Hidráulicas"> Instalações Elétricas / Hidráulicas</label><br>
-            <label><input type="checkbox" name="tipo" value="Reformas Gerais"> Reformas Gerais</label>
+            <label><input type="checkbox" name="tipo" value="Piso" {% if "Piso" in tipos %}checked{% endif %}> Piso</label><br>
+            <label><input type="checkbox" name="tipo" value="Alvenaria" {% if "Alvenaria" in tipos %}checked{% endif %}> Alvenaria</label><br>
+            <label><input type="checkbox" name="tipo" value="Pintura" {% if "Pintura" in tipos %}checked{% endif %}> Pintura</label><br>
+            <label><input type="checkbox" name="tipo" value="Drywall" {% if "Drywall" in tipos %}checked{% endif %}> Drywall</label><br>
+            <label><input type="checkbox" name="tipo" value="Gesso" {% if "Gesso" in tipos %}checked{% endif %}> Gesso</label><br>
+            <label><input type="checkbox" name="tipo" value="Carpintaria" {% if "Carpintaria" in tipos %}checked{% endif %}> Carpintaria</label><br>
+            <label><input type="checkbox" name="tipo" value="Instalações Elétricas / Hidráulicas" {% if "Instalações Elétricas / Hidráulicas" in tipos %}checked{% endif %}> Instalações Elétricas / Hidráulicas</label><br>
+            <label><input type="checkbox" name="tipo" value="Reformas Gerais" {% if "Reformas Gerais" in tipos %}checked{% endif %}> Reformas Gerais</label>
           </fieldset>
         
           <fieldset>
             <legend>10. Esportes</legend>
-            <label><input type="checkbox" name="tipo" value="Futevôlei"> Futevôlei</label><br>
-            <label><input type="checkbox" name="tipo" value="Beach Tennis"> Beach Tennis</label><br>
-            <label><input type="checkbox" name="tipo" value="Treinador Esportivo"> Treinador Esportivo</label><br>
-            <label><input type="checkbox" name="tipo" value="Personal em Grupo"> Personal em Grupo</label>
+            <label><input type="checkbox" name="tipo" value="Futevôlei" {% if "Futevôlei" in tipos %}checked{% endif %}> Futevôlei</label><br>
+            <label><input type="checkbox" name="tipo" value="Beach Tennis" {% if "Beach Tennis" in tipos %}checked{% endif %}> Beach Tennis</label><br>
+            <label><input type="checkbox" name="tipo" value="Treinador Esportivo" {% if "Treinador Esportivo" in tipos %}checked{% endif %}> Treinador Esportivo</label><br>
+            <label><input type="checkbox" name="tipo" value="Personal em Grupo" {% if "Personal em Grupo" in tipos %}checked{% endif %}> Personal em Grupo</label>
           </fieldset>
         
           <fieldset>
             <legend>11. Turismo</legend>
-            <label><input type="checkbox" name="tipo" value="Chip de Celular"> Chip de Celular</label><br>
-            <label><input type="checkbox" name="tipo" value="Aluguel de Carro para Turistas"> Aluguel de Carro para Turistas</label><br>
-            <label><input type="checkbox" name="tipo" value="Guia Turístico"> Guia Turístico</label><br>
-            <label><input type="checkbox" name="tipo" value="Ingressos / Atrações"> Ingressos / Atrações</label><br>
-            <label><input type="checkbox" name="tipo" value="Transfer de Aeroporto"> Transfer de Aeroporto</label><br>
-            <label><input type="checkbox" name="tipo" value="Roteiro Turístico Personalizado"> Roteiro Turístico Personalizado</label><br>
-            <label><input type="checkbox" name="tipo" value="Apoio em Imigração"> Apoio em Imigração (Para Turistas)</label><br>
-            <label><input type="checkbox" name="tipo" value="Assistência com Tradução e Transporte"> Assistência com Tradução e Transporte</label>
+            <label><input type="checkbox" name="tipo" value="Chip de Celular" {% if "Chip de Celular" in tipos %}checked{% endif %}> Chip de Celular</label><br>
+            <label><input type="checkbox" name="tipo" value="Aluguel de Carro para Turistas" {% if "Aluguel de Carro para Turistas" in tipos %}checked{% endif %}> Aluguel de Carro para Turistas</label><br>
+            <label><input type="checkbox" name="tipo" value="Guia Turístico" {% if "Guia Turístico" in tipos %}checked{% endif %}> Guia Turístico</label><br>
+            <label><input type="checkbox" name="tipo" value="Ingressos / Atrações" {% if "Ingressos / Atrações" in tipos %}checked{% endif %}> Ingressos / Atrações</label><br>
+            <label><input type="checkbox" name="tipo" value="Transfer de Aeroporto" {% if "Transfer de Aeroporto" in tipos %}checked{% endif %}> Transfer de Aeroporto</label><br>
+            <label><input type="checkbox" name="tipo" value="Roteiro Turístico Personalizado" {% if "Roteiro Turístico Personalizado" in tipos %}checked{% endif %}> Roteiro Turístico Personalizado</label><br>
+            <label><input type="checkbox" name="tipo" value="Apoio em Imigração" {% if "Apoio em Imigração" in tipos %}checked{% endif %}> Apoio em Imigração (Para Turistas)</label><br>
+            <label><input type="checkbox" name="tipo" value="Assistência com Tradução e Transporte" {% if "Assistência com Tradução e Transporte" in tipos %}checked{% endif %}> Assistência com Tradução e Transporte</label>
           </fieldset>
         
           <fieldset>
             <legend>12. Outros</legend>
-            <label><input type="checkbox" name="tipo" value="Outros"> Outros</label>
+            <label><input type="checkbox" name="tipo" value="Outros" {% if "Outros" in tipos %}checked{% endif %}> Outros</label>
           </fieldset>
         <input type="submit" value="Filtrar">
     </form>
@@ -193,31 +203,77 @@
     }).addTo(map);
 
     const tiposSelecionados = "{{ tipos|escapejs }}";
+    var raio = "{{ raio|escapejs }}"
+    raio = parseFloat(raio)
+    var userLat = null;
+    var userLng = null;
 
-    fetch('../api/negocios/')
-        .then(res => res.json())
-        .then(enderecos => {
-            enderecos.forEach(loc => {
-                if (tiposSelecionados.length < 3 || tiposSelecionados.includes(loc.tipo)) {
-                    const popup = `
-                        <div class="popup-negocio">
-                            <h3>${loc.nome}</h3>
-                            <p>${loc.tipo}</p>
-                            <p><strong>&#128205;</strong> ${loc.cidade}, ${loc.rua}, ${loc.numero}</p>
-                            <p><strong>&#9993;</strong> ${loc.email}</p>
-                            <p><strong>&#128222;</strong> <a href="https://wa.me/${loc.telefone_wpp}" target="_blank">${loc.telefone_wpp}</a></p>
-                            <p><strong>&#127760;</strong> <a href="${loc.instagram_or_website}" target="_blank">${loc.instagram_or_website}</a></p>
-                            <p>${loc.descricao}</p>
-                            <button onclick="openModal('loginModal')" class="saiba-mais-btn">Saiba mais</button>
-                        </div>
-                    `;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+        (position) => {
+          userLat = position.coords.latitude;
+          userLng = position.coords.longitude;
+          const userLatLng = L.latLng(userLat, userLng);
 
-                    L.marker([loc.latitude, loc.longitude])
-                        .addTo(map)
-                        .bindPopup(popup);
-                }
-            });
-        });
+          map.setView(userLatLng, 13);
+
+          const userIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/64/64113.png',
+            iconSize: [20, 20],
+            iconAnchor: [15, 15],
+            popupAnchor: [-5, -20]
+          });
+
+          L.marker(userLatLng, { icon: userIcon })
+            .addTo(map)
+            .bindPopup("Você está aqui!")
+            .openPopup();
+          carregarNegocios();
+        },
+        (error) => {
+          alert('Não foi possível obter sua localização.');
+          carregarNegocios(); 
+        }
+      );
+    } else {
+      alert('Não foi possível obter sua localização.');
+      carregarNegocios();
+    }
+
+function carregarNegocios() {
+  fetch('../api/negocios/')
+    .then(res => res.json())
+    .then(enderecos => {
+      enderecos.forEach(loc => {
+        if ((tiposSelecionados.length < 3 || tiposSelecionados.includes(loc.tipo))) {
+          const distanciaOk =
+            userLat && userLng
+              ? L.latLng(loc.latitude, loc.longitude).distanceTo(L.latLng(userLat, userLng)) <= raio
+              : true;
+
+          if (distanciaOk) {
+            const popup = `
+              <div class="popup-negocio">
+                <h3>${loc.nome}</h3>
+                <p>${loc.tipo}</p>
+                <p><strong>&#128205;</strong> ${loc.cidade}, ${loc.rua}, ${loc.numero}</p>
+                <p><strong>&#9993;</strong> ${loc.email}</p>
+                <p><strong>&#128222;</strong> <a href="https://wa.me/${loc.telefone_wpp}" target="_blank">${loc.telefone_wpp}</a></p>
+                <p><strong>&#127760;</strong> <a href="${loc.instagram_or_website}" target="_blank">${loc.instagram_or_website}</a></p>
+                <p>${loc.descricao}</p>
+                <button onclick="openModal('loginModal', ${loc.id})" class="saiba-mais-btn">Saiba mais</button>
+              </div>
+            `;
+
+            L.marker([loc.latitude, loc.longitude])
+              .addTo(map)
+              .bindPopup(popup);
+          }
+        }
+      });
+    });
+}
+
     </script>
 </body>
 </html>

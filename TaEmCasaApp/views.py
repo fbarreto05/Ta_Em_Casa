@@ -33,7 +33,7 @@ def cadastro_validate(request):
     ctx = ssl.create_default_context(cafile=certifi.where())
     geolocator = Nominatim(user_agent="ta_em_casa", ssl_context=ctx)
     endereco = f"USA, {estado}, {cidade}, {rua}, {numero}"
-    local = geolocator.geocode(endereco)
+    local = geolocator.geocode(endereco, timeout=None)
     if local:
         latitude = local.latitude
         longitude = local.longitude
@@ -56,25 +56,30 @@ def negocios_json(request):
     negocios = Negocio.objects.all()
     enderecos = []
     for n in negocios:
-        enderecos.append({
-            'nome': n.nome,
-            'tipo' : n.tipo,
-            'estado' : n.estado,
-            'cidade': n.cidade,
-            'rua': n.rua,
-            'numero' : n.numero,
-            'email' : n.email,
-            'telefone_wpp' : n.telefone_wpp,
-            'descricao' : n.descricao,
-            'instagram_or_website' : n.instagram_or_website,
-            'latitude' : n.latitude,
-            'longitude' : n.longitude
-        })
+        if n.permitido:
+            enderecos.append({
+                'nome': n.nome,
+                'tipo' : n.tipo,
+                'estado' : n.estado,
+                'cidade': n.cidade,
+                'rua': n.rua,
+                'numero' : n.numero,
+                'email' : n.email,
+                'telefone_wpp' : n.telefone_wpp,
+                'descricao' : n.descricao,
+                'instagram_or_website' : n.instagram_or_website,
+                'latitude' : n.latitude,
+                'longitude' : n.longitude
+            })
     return JsonResponse(enderecos, safe=False)
 
 def app(request):
+    negocioid = request.GET.get("loc")
+    negocio = Negocio.objects.get(id=negocioid)
+    print(negocio)
     tipos = request.POST.getlist('tipo')
-    return render(request, 'app.html', {'tipos' : tipos})
+    raio = request.POST.get('raio')
+    return render(request, 'app.html', {'tipos' : tipos, 'raio' : raio})
 
 def login_validate(request):
     nome = request.POST.get("nome")

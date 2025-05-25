@@ -1,5 +1,8 @@
 function openModal(id) {
   document.getElementById(id).style.display = 'flex';
+
+  const form = document.getElementById('loginForm');
+  form.action = `{% url 'login_validate' %}?loc=${negocioId}`;
 }
 
 function closeModal(id) {

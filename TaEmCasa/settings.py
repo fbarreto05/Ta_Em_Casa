@@ -132,4 +132,3 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'fernandobarreto864@gmail.com'
 EMAIL_HOST_PASSWORD = 'xgemnliciojwytwc'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-ALLOWED_HOSTS = []

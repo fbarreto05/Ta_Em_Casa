@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('home/', views.home, name='home'),
+    path('/', views.home, name='home'),
     path('cadastro_validate/', views.cadastro_validate, name='cadastro_validate'),
     path('login_validate/', views.login_validate, name='login_validate'),
     path('contato_validate/', views.contato_validate, name='contato_validate'),

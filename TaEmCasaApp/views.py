@@ -140,7 +140,7 @@ def login_validate(request):
     enviar_email(request, nome, email, negocio)
 
     query = request.GET.get('query')
-    return redirect(f'/taemcasa/app/{query}')
+    return redirect(f'/app/{query}')
 
 def receber_email(request, nome, email, telefone, mensagem):
     assunto = f'O usuario {nome}, de email {email} e telefone {telefone} entrou em contato!'
@@ -179,4 +179,4 @@ def contato_validate(request):
 
     receber_email(request, nome, email, telefone, mensagem)
 
-    return redirect('/taemcasa/app')
+    return redirect('')

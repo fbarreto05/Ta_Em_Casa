@@ -12,5 +12,6 @@ urlpatterns = [
     path('api/negocios/', views.negocios_json, name='negocios_json'),
 ]
 
-if not settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+

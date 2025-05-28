@@ -76,7 +76,7 @@ ul.messages li.alert.info {
     }
     .content .logo {
         width: 200px;
-        height: 20px;
+        height: 150px;
     }
     .hero-text-container {
         display: flex;
@@ -333,14 +333,13 @@ ul.messages li.alert.info {
 
   .content{
 	width: 100%;
-
-	.logo
 }
+
 .testimonials-container
 {
 	    flex-direction: column;
 }
-. testimonial p
+.testimonial p
 {
   font-size: 9px;
 }
@@ -431,6 +430,4 @@ ul.messages li.alert.info {
 
   section h2 {
     font-size: 22px;
-  }
-}
-
+  }}

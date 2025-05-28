@@ -109,8 +109,8 @@ def enviar_email(request, nome, email_destino, negocio):
     {negocio.descricao}
         """
 
-    remetente = 'fernandobarreto864@gmail.com'
-    senha = 'xgem nlic iojw ytwc'
+    remetente = 'taemcasausa@gmail.com'
+    senha = 'nyhn fxps pukd yyzv'
     destinatario = email_destino
 
     msg = MIMEMultipart()
@@ -150,9 +150,9 @@ def receber_email(request, nome, email, telefone, mensagem):
     {mensagem}
         """
 
-    remetente = 'fernandobarreto864@gmail.com'
-    senha = 'xgem nlic iojw ytwc'
-    destinatario = 'fernandobarreto864@gmail.com'
+    remetente = 'taemcasausa@gmail.com'
+    senha = 'nyhn fxps pukd yyzv'
+    destinatario = 'taemcasa@gmail.com'
 
     msg = MIMEMultipart()
     msg['From'] = remetente
@@ -179,4 +179,4 @@ def contato_validate(request):
 
     receber_email(request, nome, email, telefone, mensagem)
 
-    return redirect('')
+    return redirect('/')

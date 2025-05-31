@@ -19,7 +19,6 @@
 <body>
 <button id="toggleSidebar">☰ Menu</button>
 <div id="sidebar" class="collapsed">
-    <br><br><br>
     <form action="{% url 'app' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -313,6 +312,7 @@
 
         toggleButton.addEventListener('click', () => {
             sidebar.classList.toggle('collapsed');
+	    toggleButton.classList.toggle('enabled')
         });
     </script>
 </body>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -329,9 +330,12 @@
     </div>
   </div>
 </section>
-<section style="padding: 0;">
-    <img class="bola"  src="{% static 'img/bola.png' %}">
+
+<section style="background-color: #064e3b; color: white;">
+    <h2 style="color: white; font-size: 35px;">Descubra como a nossa comunidade facilita sua vida nos EUA</h2>
+    <a onclick="openModal('comoFuncionaModal')"  class="btn-secondary" style="background-color: #facc15; color: #064e3b; margin-top: 20px;" >Como funciona</a>
 </section>
+
 <section class="testimonials" style="padding: 0;">
     <h2 style="font-size: 35px; padding: 0;">O que dizem nossos clientes</h2>
     <div style="display: flex; justify-content: center;">
@@ -355,7 +359,6 @@
        <div style="text-align: left;">
         <div>
             <a onclick="openModal('sobreModal')">Sobre</a> |
-            <a onclick="openModal('comoFuncionaModal')">Como funciona</a> |
             <a onclick="openModal('contatoModal')">Contato</a>
         </div>
         <p style="margin-top: 20px;">© 2024 Tá em Casa</p>
